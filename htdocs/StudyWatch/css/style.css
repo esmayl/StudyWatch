@@ -1,104 +1,77 @@
-td a 
-{
-	display:block;
-	padding:16px;
+.vid-container{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
 }
-tr
-{
-	background:white;
+.bgvid{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100vw;
 }
-
-tr.content:hover  
-{
-	background:grey; 
+.inner-container{
+  width:400px;
+  height:400px;
+  position:absolute;
+  top:calc(50vh - 200px);
+  left:calc(50vw - 200px);
+  overflow:hidden;
 }
-
-a:hover 
-{
-	text-decoration:none;
-	pointer-events:none;
+.bgvid.inner{
+  top:calc(-50vh + 200px);
+  left:calc(-50vw + 200px);
+  filter: url("data:image/svg+xml;utf9,<svg%20version='1.1'%20xmlns='http://www.w3.org/2000/svg'><filter%20id='blur'><feGaussianBlur%20stdDeviation='10'%20/></filter></svg>#blur");
+  -webkit-filter:blur(10px);
+  -ms-filter: blur(10px);
+  -o-filter: blur(10px);
+  filter:blur(10px);
 }
-a:link 
-{
-	color:black;
-	text-decoration:none;
+.box{
+  position:absolute;
+  height:100%;
+  width:100%;
+  font-family:Helvetica;
+  color:#fff;
+  background:rgba(0,0,0,0.13);
+  padding:30px 0px;
 }
-a:visited
-{
-	color:black;
-	text-decoration:none;
+.box h1{
+  text-align:center;
+  margin:30px 0;
+  font-size:30px;
 }
-a:active
-{
-	color:black;
-	text-decoration:none;
+.box input{
+  display:block;
+  width:300px;
+  margin:20px auto;
+  padding:15px;
+  background:rgba(0,0,0,0.2);
+  color:#fff;
+  border:0;
 }
-a
-{
-	color:black;
+.box input:focus,.box input:active,.box button:focus,.box button:active{
+  outline:none;
 }
-
-body
-{
-	background-image:url("../img/background.png");
-	background-size:100%;
-	background-color:#FFF;
+.box button{
+  background:#2ecc71;
+  border:0;
+  color:#fff;
+  padding:10px;
+  font-size:20px;
+  width:330px;
+  margin:20px auto;
+  display:block;
+  cursor:pointer;
 }
-.scrollableX
-{
-	     margin: auto;
-	overflow-x:scroll;
+.box button:active{
+  background:#27ae60;
 }
-.scrollableY
-{
-	overflow-y:scroll;
+.box p{
+  font-size:14px;
+  text-align:center;
 }
-
-nav.bg-light 
-{
-    background-color: #699CFC !important;
-}
-
-.main
-{
-	margin: auto;
-	width:75vw;
-}
-
-.logo
-{
-	height:66px;
-}
-
-#logout
-{
-	margin: -8px;
-	padding: 0px;
-	pointer-events:auto;
-	height:66px;
-	width:120px;
-}
-#logout:hover
-{
-	background: 	linear-gradient(to right,rgba(105,156,252,1),rgba(84,124,201,1));
-}
-.container {
-	float: center;
-	background: #D9D9D9;
-	  width: 300px;
-	  border: 25px solid #D9D9D9;
-	  padding: 25px;
-	  margin: auto;
-  }
-.EmailBar {
-background: #4A86E8;
-}
-
-.PasswordBar {
-background: #4A86E8;
-}
-
-.LoginBar { 
-background: #FC0F3B;
+.box p span{
+  cursor:pointer;
+  color:#666;
 }
   
