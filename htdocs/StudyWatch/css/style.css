@@ -1,7 +1,13 @@
+html,body{
+	padding:0px;
+	margin:0px;
+}
 .vid-container{
   position:relative;
   height:100vh;
   overflow:hidden;
+  padding:0px;
+  margin:0px;
 }
 .bgvid{
   position:absolute;
@@ -53,7 +59,7 @@
   outline:none;
 }
 .box button{
-  background:#2ecc71;
+  background:rgb(0, 123, 255);;
   border:0;
   color:#fff;
   padding:10px;
@@ -64,7 +70,7 @@
   cursor:pointer;
 }
 .box button:active{
-  background:#27ae60;
+  background:rgb(0, 110, 255);
 }
 .box p{
   font-size:14px;
@@ -73,5 +79,13 @@
 .box p span{
   cursor:pointer;
   color:#666;
+}
+.even:hover
+{
+	background:rgba(0, 130, 150,0.3);
+}
+.odd:hover
+{
+	background:rgba(0, 130, 150,0.3)!important;
 }
   
