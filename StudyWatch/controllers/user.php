@@ -2,47 +2,55 @@
 
 function login()
 {
-global $connection;
+	global $connection;
 
-//3. If the form is submitted or not.
-//3.1 If the form is submitted
-if (isset($_POST['email']) and isset($_POST['password'])){
-//3.1.1 Assigning posted values to variables.
-$email = $_POST['email'];
-$password = $_POST['password'];
-//3.1.2 Checking the values are existing in the database or not
-$query = "SELECT * FROM `user` WHERE email='$email' and password='$password'";
-$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-$count = mysqli_num_rows($result);
-//3.1.2 If the posted values are equal to the database values, then session will be created for the user.
-if ($count == 1)
-{
-	$foundResult = mysqli_fetch_assoc($result);
-	$_SESSION['email'] = $email;
-	$_SESSION['username'] = $foundResult['name'];
-	$_SESSION['user_type'] = $foundResult['user_type'];
-	
-}else{
-//3.1.3 If the login credentials doesn't match, he will be shown with an error message.
-$fmsg = "Invalid Login Credentials.";
-}
-}
-//3.1.4 if the user is logged in Greets the user with message
-if (isset($_SESSION['email'])){
-require_once(APP_PATH.'/views/home.php');
-}else{
-//3.2 When the user visits the page first time, simple login form will be displayed.
-	require_once(APP_PATH.'/views/login.php');
-}
+	if (!is_null($_POST['email']) and !is_null($_POST['password']))
+	{
+
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		
+		$query = "SELECT * FROM `user` WHERE email='$email' and password='$password'";
+		
+		$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+		
+		$count = mysqli_num_rows($result);
+
+		if ($count == 1)
+		{
+			$foundResult = mysqli_fetch_assoc($result);
+			$_SESSION['email'] = $email;
+			$_SESSION['username'] = $foundResult['name'];
+			$_SESSION['user_type'] = $foundResult['user_type'];
+			
+		}
+		else
+		{
+			
+			echo "<script> alert('Gebruikers gegevens niet incorrect');</script>";
+			
+			require_once(APP_PATH.'/views/login.php');
+		}
+	}
+	else
+	{
+		echo "<script> alert('Vul uw gebruikers gegevens in.');</script>";
+		
+		require_once(APP_PATH.'/views/login.php');
+	}
 }
 
 function logout()
 {
-	echo"<script> alert('logged out!')</script>";
-
+	if(!isset($_SESSION['username'])){return;}
+	
+	session_destroy();
+	
 	unset($_COOKIE['PHPSESSID']);
 
-	//require_once(APP_PATH.'/views/login.php');
+	require_once(APP_PATH.'/views/login.php');
+	
+	echo"<script> alert('U bent nu uitgelogged.')</script>";
 }
 
 function forgotPassword()

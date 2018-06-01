@@ -13,26 +13,39 @@ function call($controller, $action)
 $controller = "home";
 $action = "login";
 
-// check if the controller and action are set, otherwise fall back to default controller and action
-if (isset($_POST['controller']) && isset($_POST['action'])) {
+// check if the controller and action are set
+if (isset($_POST['controller']) && isset($_POST['action'])) 
+{
     $controller = $_POST['controller'];
     $action = $_POST['action'];
 }
 
-
-// a list of the controllers we have and their actions we consider "allowed" values
-$allowedControllers = array(
-	'home' => array ('login'),
-	'user' => array ('login','forgotPassword'),
-);
-
-if (isset($_SESSION['email']))
+// 
+if(isset($_SESSION['username']) && $action == 'login')
 {
-	$controller="home";
-	$action="home";
-	$allowedControllers['home'] = array('home');
-	$allowedControllers['user'] = array('logout');
-	$allowedControllers['course'] = array('getStudents');
+	$action = 'home';
+}
+
+if (getUserType() > 0)
+{
+	// a list of controllers that every logged in person can access
+	$allowedControllers = array(
+	'home' => array ('home','error'),
+	'user' => array ('logout','login'),
+	);
+	
+	if(getUserType() != 2)
+	{
+		$allowedControllers['course'] = array ('getStudents');
+	}
+}
+else
+{
+	// a list of the controllers we have and their actions we consider "allowed" values
+	$allowedControllers = array(
+		'home' => array ('login','error'),
+		'user' => array ('login','forgotPassword','logout'),
+	);	
 }
 
 //find a way to add 'docentPage' to the allowedControllers only when logged in.

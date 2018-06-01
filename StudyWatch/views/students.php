@@ -11,7 +11,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.php" class="nav-link">Home</a>
+        <a name="home" href="#" class="nav-link">Home</a>
       </li>
 	  
 	  <!-- mischien dit gebruiken als contact met admin -->
@@ -26,7 +26,7 @@
     <a href="#" class="brand-link">
       
 		<span class="brand-text font-weight-light">
-			<img src="img/windesheim.svg" alt="Logo" 
+			<img src="img/temporaryLogo.png" alt="Logo" class="img-circle"
            style="opacity: .8;width:100%;height:auto;">
 		</span>
     </a>
@@ -65,6 +65,18 @@
                   <p>Projectmanagment</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a id="vak2" href="#" class="nav-link">
+                  <i class="fa fa-book-open nav-icon"></i>
+                  <p>Studiebegeleiding</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="vak3" href="#" class="nav-link">
+                  <i class="fa fa-book-open nav-icon"></i>
+                  <p>Vak 3</p>
+                </a>
+              </li>
             </ul>
           </li>
 		  
@@ -81,7 +93,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a name="home" href="#">Home</a></li>
               <li class="breadcrumb-item active">Studenten administratie - Projectmanagement</li>
             </ol>
           </div>
@@ -169,6 +181,32 @@ for (var i = 0; i < btns.length; i++) {
     current[0].className = current[0].className.replace(" active", "");
     this.className += " active";
   });
+}
+
+var test2 = document.getElementsByName('home');
+
+//Set function to switch back to the home page
+for(var i =0;i<test2.length;i++)
+{
+	test2[i].addEventListener('click',function()
+	{
+		document.body.innerHTML += '<form id="dyn2Form" method="post"><input type="hidden" name="controller" value="home"><input type="hidden" name="action" value="home">';
+		document.getElementById("dyn2Form").submit();
+	}
+	);
+}
+
+var test3 = document.getElementsByName('logout');
+
+//Set function to logout and switch to login page		  
+for(var i =0;i<test3.length;i++)
+{
+	test3[i].addEventListener('click',function()
+	{
+		document.body.innerHTML += '<form id="dyn1Form" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="logout">';
+		document.getElementById("dyn1Form").submit();
+	}
+	);
 }
 
 </script>

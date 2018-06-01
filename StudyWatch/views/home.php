@@ -1,6 +1,5 @@
 <?php include(APP_PATH.'/styles.php'); ?>
 <?php include(APP_PATH.'/javascripts.php'); ?>
-<?php include(APP_PATH.'/controllers/course.php'); ?>
 
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" style="height:auto;min-height=100%;">
@@ -29,7 +28,7 @@
     <a href="#" class="brand-link">
       
 		<span class="brand-text font-weight-light">
-			<img src="img/windesheim.svg" alt="Logo" 
+			<img src="img/temporaryLogo.png" alt="Logo" class="img-circle"
            style="opacity: .8;width:100%;height:auto;">
 		</span>
     </a>
@@ -56,10 +55,26 @@
 			
             <!-- verander de vakken met PHP per docent/docent/studiebegeleider -->
 			<ul id="vakken" class="nav nav-treeview">
-							<!-- Haalt alle vakken op uit de dabase. Deze functie zit in /controllers/course.php -->
-              <?php
-								getCourses();
-							?>
+              <li class="nav-item">
+                <a id="vak1" href="#" class="nav-link active">
+                  <i class="fa fa-book-open nav-icon"></i>
+                  <p>Projectmanagment</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="vak2" name="showstudent" href="#" class="nav-link">
+                  <i class="fa fa-book-open nav-icon"></i>
+                  <p>Studiebegeleiding</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="vak3" href="#" class="nav-link">
+                  <i class="fa fa-book-open nav-icon"></i>
+                  <p>Vak 3</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 		  
 		</nav>
     </div>
@@ -70,12 +85,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><?php $_SESSION['currentCourse'] ?></h1>
+            <h1>Projectmanagement</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a name="home" href="#">Home</a></li>
-              <li class="breadcrumb-item active"><?php $_SESSION['currentCourse'] ?></li>
+              <li class="breadcrumb-item active">Projectmanagement</li>
             </ol>
           </div>
         </div>
@@ -274,6 +289,19 @@ for(var i =0;i<test3.length;i++)
 	test3[i].addEventListener('click',function()
 	{
 		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="logout">';
+		document.getElementById("dynForm").submit();
+	}
+	);
+}
+
+var test4 = document.getElementsByName('showstudent');
+
+//Set function to logout and switch to login page		  
+for(var i =0;i<test4.length;i++)
+{
+	test4[i].addEventListener('click',function()
+	{
+		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="studentlist"><input type="hidden" name="action" value="showStudents">';
 		document.getElementById("dynForm").submit();
 	}
 	);
