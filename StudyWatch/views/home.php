@@ -1,5 +1,6 @@
 <?php include(APP_PATH.'/styles.php'); ?>
 <?php include(APP_PATH.'/javascripts.php'); ?>
+<?php include(APP_PATH.'/controllers/course.php'); ?>
 
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" style="height:auto;min-height=100%;">
@@ -28,7 +29,7 @@
     <a href="#" class="brand-link">
       
 		<span class="brand-text font-weight-light">
-			<img src="img/temporaryLogo.png" alt="Logo" class="img-circle"
+			<img src="img/windesheim.svg" alt="Logo" 
            style="opacity: .8;width:100%;height:auto;">
 		</span>
     </a>
@@ -55,26 +56,10 @@
 			
             <!-- verander de vakken met PHP per docent/docent/studiebegeleider -->
 			<ul id="vakken" class="nav nav-treeview">
-              <li class="nav-item">
-                <a id="vak1" href="#" class="nav-link active">
-                  <i class="fa fa-book-open nav-icon"></i>
-                  <p>Projectmanagment</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a id="vak2" href="#" class="nav-link">
-                  <i class="fa fa-book-open nav-icon"></i>
-                  <p>Studiebegeleiding</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a id="vak3" href="#" class="nav-link">
-                  <i class="fa fa-book-open nav-icon"></i>
-                  <p>Vak 3</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+							<!-- Haalt alle vakken op uit de dabase. Deze functie zit in /controllers/course.php -->
+              <?php
+								getCourses();
+							?>
 		  
 		</nav>
     </div>
