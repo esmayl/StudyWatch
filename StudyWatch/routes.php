@@ -23,16 +23,19 @@ if (isset($_POST['controller']) && isset($_POST['action'])) {
 // a list of the controllers we have and their actions we consider "allowed" values
 $allowedControllers = array(
 	'home' => array ('login'),
-	'user' => array ('login','forgotPassword'),
+    'user' => array ('login','forgotPassword'),
+    'studentlist' => array ('showStudents'),
 );
 
 if (isset($_SESSION['email']))
 {
-	$controller="home";
-	$action="home";
-	$allowedControllers['home'] = array('home');
-	$allowedControllers['user'] = array('logout');
-	$allowedControllers['course'] = array('getStudents');
+    // a list of the controllers we have and their actions we consider "allowed" values
+$allowedControllers = array(
+	'home' => array ('home', 'error'),
+    'user' => array ('login','forgotPassword', 'logout'),
+    'studentlist' => array ('showStudents'),
+);
+
 }
 
 //find a way to add 'docentPage' to the allowedControllers only when logged in.

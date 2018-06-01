@@ -26,7 +26,7 @@
     <a href="#" class="brand-link">
       
 		<span class="brand-text font-weight-light">
-			<img src="img/windesheim.svg" alt="Logo" 
+			<img src="img/temporaryLogo.png" alt="Logo" class="img-circle"
            style="opacity: .8;width:100%;height:auto;">
 		</span>
     </a>
@@ -63,6 +63,18 @@
                 <a id="vak1" href="#" class="nav-link active">
                   <i class="fa fa-book-open nav-icon"></i>
                   <p>Projectmanagment</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="vak2" href="#" class="nav-link">
+                  <i class="fa fa-book-open nav-icon"></i>
+                  <p>Studiebegeleiding</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="vak3" href="#" class="nav-link">
+                  <i class="fa fa-book-open nav-icon"></i>
+                  <p>Vak 3</p>
                 </a>
               </li>
             </ul>
