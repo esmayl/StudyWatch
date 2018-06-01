@@ -34,9 +34,13 @@ if (getUserType() > 0)
 	'user' => array ('logout','login'),
 	);
 	
-	if(getUserType() != 2)
+	if(getUserType() == 2)
 	{
 		$allowedControllers['course'] = array ('getStudents');
+	}
+	else if(getUserType() == 3)
+	{
+		$allowedControllers['studentlist'] = array('showStudents');
 	}
 }
 else
@@ -45,6 +49,7 @@ else
 	$allowedControllers = array(
 		'home' => array ('login','error'),
 		'user' => array ('login','forgotPassword','logout'),
+		
 	);	
 }
 

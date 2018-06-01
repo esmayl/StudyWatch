@@ -19,9 +19,12 @@ function login()
 		if ($count == 1)
 		{
 			$foundResult = mysqli_fetch_assoc($result);
+			
 			$_SESSION['email'] = $email;
 			$_SESSION['username'] = $foundResult['name'];
 			$_SESSION['user_type'] = $foundResult['user_type'];
+			
+			require_once(APP_PATH.'/views/home.php');
 			
 		}
 		else
@@ -42,15 +45,20 @@ function login()
 
 function logout()
 {
-	if(!isset($_SESSION['username'])){return;}
-	
-	session_destroy();
-	
-	unset($_COOKIE['PHPSESSID']);
+	if(!isset($_SESSION['username']))
+	{
+		require_once(APP_PATH.'/views/login.php');
+	}
+	else
+	{
+		session_destroy();
+		
+		unset($_COOKIE['PHPSESSID']);
 
-	require_once(APP_PATH.'/views/login.php');
-	
-	echo"<script> alert('U bent nu uitgelogged.')</script>";
+		require_once(APP_PATH.'/views/login.php');
+		
+		echo"<script> alert('U bent nu uitgelogged.')</script>";
+	}
 }
 
 function forgotPassword()
