@@ -61,15 +61,12 @@
                   <p>Projectmanagment</p>
                 </a>
               </li>
-			  
-			  
               <li class="nav-item">
-                <a id="vak2" href="#" class="nav-link">
+                <a id="vak2" name="showstudent" href="#" class="nav-link">
                   <i class="fa fa-book-open nav-icon"></i>
                   <p>Studiebegeleiding</p>
                 </a>
               </li>
-			  
               <li class="nav-item">
                 <a id="vak3" href="#" class="nav-link">
                   <i class="fa fa-book-open nav-icon"></i>
@@ -77,7 +74,6 @@
                 </a>
               </li>
             </ul>
-			
           </li>
 		  
 		</nav>
@@ -89,7 +85,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><?php echo $_SESSION['currentCourse'] ?></h1>
+            <h1>Projectmanagement</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -279,8 +275,8 @@ for(var i =0;i<test2.length;i++)
 {
 	test2[i].addEventListener('click',function()
 	{
-		document.body.innerHTML += '<form id="dyn2Form" method="post"><input type="hidden" name="controller" value="home"><input type="hidden" name="action" value="home">';
-		document.getElementById("dyn2Form").submit();
+		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="home"><input type="hidden" name="action" value="home">';
+		document.getElementById("dynForm").submit();
 	}
 	);
 }
@@ -292,25 +288,24 @@ for(var i =0;i<test3.length;i++)
 {
 	test3[i].addEventListener('click',function()
 	{
-		document.body.innerHTML += '<form id="dyn1Form" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="logout">';
-		document.getElementById("dyn1Form").submit();
+		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="logout">';
+		document.getElementById("dynForm").submit();
 	}
 	);
 }
 
-var test4 = document.getElementsByName('logout');
+var test4 = document.getElementsByName('showstudent');
 
 //Set function to logout and switch to login page		  
 for(var i =0;i<test4.length;i++)
 {
 	test4[i].addEventListener('click',function()
 	{
-		document.body.innerHTML += '<form id="dyn1Form" method="post"><input type="hidden" name="controller" value="course"><input type="hidden" name="action" value="getCouses"><input type="hidden" name="selectedCourse" value="'+event.innerHTML+'">';
-		document.getElementById("dyn1Form").submit();
+		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="studentlist"><input type="hidden" name="action" value="showStudents">';
+		document.getElementById("dynForm").submit();
 	}
 	);
 }
-
 </script>
 
 </body>
