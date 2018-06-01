@@ -20,7 +20,7 @@
        <th><b>Meer info</b></th>
   </tr>
   <tr>
-       <td> PLACEHOLDER </td>
+       <td> PLACEHOLDER </td><td>test</td>
        <td> XX% </td>
        <td> KLEUR </td>
        <td> <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Meer</button>
