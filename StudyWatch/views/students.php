@@ -1,5 +1,5 @@
-<?php include(APP_PATH.'/styles.php'); ?>
-<?php include(APP_PATH.'/javascripts.php'); ?>
+<?php require_once(APP_PATH.'/styles.php'); ?>
+<?php require_once(APP_PATH.'/javascripts.php'); ?>
 
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" style="height:auto;min-height=100%;">
@@ -23,7 +23,7 @@
 </nav>
   
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="#" class="brand-link">
+    <a name="home" href="#" class="brand-link">
       
 		<span class="brand-text font-weight-light">
 			<img src="img/temporaryLogo.png" alt="Logo" class="img-circle"
@@ -35,7 +35,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
         <div class="info">
-          <a href="#" class="d-block">Welkom 
+          <a name="home" href="#" class="d-block">Welkom 
 			<b>
 			<?php 
 				echo getUsername(); 
@@ -57,27 +57,20 @@
               </p>
             </a>
 			
-            <!-- verander de vakken met PHP per docent/docent/studiebegeleider -->
-			<ul id="vakken" class="nav nav-treeview">
-              <li class="nav-item">
-                <a id="vak1" href="#" class="nav-link active">
-                  <i class="fa fa-book-open nav-icon"></i>
-                  <p>Projectmanagment</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a id="vak2" href="#" class="nav-link">
-                  <i class="fa fa-book-open nav-icon"></i>
-                  <p>Studiebegeleiding</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a id="vak3" href="#" class="nav-link">
-                  <i class="fa fa-book-open nav-icon"></i>
-                  <p>Vak 3</p>
-                </a>
-              </li>
-            </ul>
+				<!-- verander de vakken met PHP per docent/docent/studiebegeleider -->
+				<ul id="vakken" class="nav nav-treeview">
+				  <!-- geeft alleen de studiebegeleider toegang tot studiebegeleiding --> 
+				  <?php if(getUserType() == 3)
+				  {
+					  echo'<li class="nav-item">';
+					  echo'<a name="showstudent" href="#" class="nav-link">';
+					  echo'<i class="fa fa-book-open nav-icon"></i>';
+					  echo'<p>Studiebegeleiding</p>';
+					  echo'</a>';
+					  echo'</li>';
+				  }
+				  ?>
+				</ul>
           </li>
 		  
 		</nav>
@@ -89,12 +82,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Studenten administratie - Projectmanagement</h1>
+            <h1>Studenten administratie - <?php echo getCurrentCourse(); ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a name="home" href="#">Home</a></li>
-              <li class="breadcrumb-item active">Studenten administratie - Projectmanagement</li>
+              <li class="breadcrumb-item active">Studenten administratie - <?php echo getCurrentCourse(); ?></li>
             </ol>
           </div>
         </div>

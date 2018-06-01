@@ -1,5 +1,5 @@
-<?php include(APP_PATH.'/styles.php'); ?>
-<?php include(APP_PATH.'/javascripts.php'); ?>
+<?php require_once(APP_PATH.'/styles.php'); ?>
+<?php require_once(APP_PATH.'/javascripts.php'); ?>
 
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" style="height:auto;min-height=100%;">
@@ -61,14 +61,20 @@
                   <p>Projectmanagment</p>
                 </a>
               </li>
+			  
+			  <!-- geeft alleen de studiebegeleider toegang tot studiebegeleiding --> 
+			  <?php if(getUserType() == 3)
+			  {
+				  echo'<li class="nav-item">';
+				  echo'<a name="showstudent" href="#" class="nav-link">';
+				  echo'<i class="fa fa-book-open nav-icon"></i>';
+				  echo'<p>Studiebegeleiding</p>';
+				  echo'</a>';
+				  echo'</li>';
+			  }
+			  ?>
               <li class="nav-item">
-                <a id="vak2" name="showstudent" href="#" class="nav-link">
-                  <i class="fa fa-book-open nav-icon"></i>
-                  <p>Studiebegeleiding</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a id="vak3" href="#" class="nav-link">
+                <a name="course" id="vak3" href="#" class="nav-link">
                   <i class="fa fa-book-open nav-icon"></i>
                   <p>Vak 3</p>
                 </a>
@@ -162,7 +168,7 @@
 							echo"<input type='hidden' name='action' value='getStudents'/>";
 							echo"<input type='hidden' name='courseName' value='Projectmanagement'/>";
 							echo"<input type='hidden' name='weekNumber' value='1'/>";
-							echo"<input type='submit' value='51%'>";
+							echo"<input type='submit' value='66%'>";
 							echo"</input>";
 							echo"</form>";
 							echo"</td>";
@@ -262,7 +268,7 @@ for(var i =0;i<test.length;i++)
 {
 	test[i].addEventListener('click',function()
 	{
-		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="course"><input type="hidden" name="action" value="getStudents"><input type="hidden" name="courseName" value="Projectmanagement"/><input type="hidden" name="weekNumber" value="1"/>';
+		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="setCurrentCourse('+test5[i].innerHTML+');">';
 		document.getElementById("dynForm").submit();
 	}
 	);
@@ -306,6 +312,7 @@ for(var i =0;i<test4.length;i++)
 	}
 	);
 }
+
 </script>
 
 </body>

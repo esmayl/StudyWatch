@@ -1,4 +1,4 @@
-<?php include(APP_PATH."/styles.php"); ?>
+<?php require_once((APP_PATH."/styles.php"); ?>
 
 <title>Welkom bij StudyWatch</title>
 
