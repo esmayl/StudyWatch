@@ -70,12 +70,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Projectmanagement</h1>
+            <h1><?php $_SESSION['currentCourse'] ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a name="home" href="#">Home</a></li>
-              <li class="breadcrumb-item active">Projectmanagement</li>
+              <li class="breadcrumb-item active"><?php $_SESSION['currentCourse'] ?></li>
             </ol>
           </div>
         </div>

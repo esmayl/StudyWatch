@@ -13,12 +13,12 @@ function getCourses()
 
 	$co = $connection->query($sql);
 
-	$length = count($co);
+	$i = 0;
 	foreach($co as $course){
 		echo '<li class="nav-item">';
 
-				 if ($length[0] ){
-
+				 if ($i == 0 ){
+					echo '<a id="vak1" href="#" class="nav-link active">';
 				 }else{
 				 echo '<a id="vak1" href="#" class="nav-link">';
 				 }
@@ -26,7 +26,9 @@ function getCourses()
                 echo  '<i class="fa fa-book-open nav-icon"></i>';
 				  echo '<p>' . $course['vak'] . '</p>';
             echo'</a>
-              </li> ';
+			  </li> ';
+	
+	$i++;
 	}
 }
 
