@@ -11,9 +11,11 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.php" class="nav-link">Home</a>
+        <a name="home" href="#" class="nav-link">Home</a>
       </li>
-	  
+	  <li class="nav-item d-none d-sm-inline-block">
+        <a name="logout" href="#" class="nav-link"><b>Log uit</b></a>
+      </li>
 	  <!-- mischien dit gebruiken als contact met admin -->
       <!--<li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -35,7 +37,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
         <div class="info">
-          <a href="#" class="d-block">Welkom <b><?php echo getUsername(); ?></b></a>
+          <a name="home" href="#" class="d-block">Welkom <b><?php echo getUsername(); ?></b></a>
         </div>
       </div>
 	  
@@ -87,7 +89,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a name="home" href="#">Home</a></li>
               <li class="breadcrumb-item active">Projectmanagement</li>
             </ol>
           </div>
@@ -99,7 +101,7 @@
               <h3 class="card-title">Lessen</h3>
             </div>
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="table" class="table table-bordered table-striped">
                 <thead>
 				<tr>
                   <th>Week</th>
@@ -229,7 +231,7 @@
 <script>
 //functie om de tabel weer te geven
   $(function () {
-    $('#example1').DataTable({
+    $('#table').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": true,
@@ -255,6 +257,7 @@ for (var i = 0; i < btns.length; i++) {
 
 var test = document.getElementsByClassName('clickable');
 
+//Set function to switch the page to the course page when clicked on 1 of the courses
 for(var i =0;i<test.length;i++)
 {
 	test[i].addEventListener('click',function()
@@ -264,8 +267,32 @@ for(var i =0;i<test.length;i++)
 	}
 	);
 }
-			  
 
+var test2 = document.getElementsByName('home');
+
+//Set function to switch back to the home page
+for(var i =0;i<test2.length;i++)
+{
+	test2[i].addEventListener('click',function()
+	{
+		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="home"><input type="hidden" name="action" value="home">';
+		document.getElementById("dynForm").submit();
+	}
+	);
+}
+
+var test3 = document.getElementsByName('logout');
+
+//Set function to logout and switch to login page		  
+for(var i =0;i<test3.length;i++)
+{
+	test3[i].addEventListener('click',function()
+	{
+		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="logout">';
+		document.getElementById("dynForm").submit();
+	}
+	);
+}
 </script>
 
 </body>

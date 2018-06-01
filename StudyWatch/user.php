@@ -1,13 +1,16 @@
 <?php
 function getUsername()
 {
-	return "Test user";
+	if(!isset($_SESSION['username'])){return;}
+	
+	return $_SESSION['username'];
 }
 
 function getUserType()
 {
-	//1 = docent,2=student,3=studie begeleider
-	return 1;
+	if(!isset($_SESSION['user_type'])){return;}
+	
+	return $_SESSION['user_type'];
 }
 
 ?>

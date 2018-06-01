@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 function call($controller, $action) 
 {
     // require the file that matches the controller name
@@ -16,12 +18,23 @@ if (isset($_POST['controller']) && isset($_POST['action'])) {
     $controller = $_POST['controller'];
     $action = $_POST['action'];
 }
+
+
 // a list of the controllers we have and their actions we consider "allowed" values
 $allowedControllers = array(
-	'home' => array ('welcome','login'),
+	'home' => array ('login'),
 	'user' => array ('login','forgotPassword'),
-	'course' => array('getStudents')
 );
+
+if (isset($_SESSION['email']))
+{
+	$controller="home";
+	$action="home";
+	$allowedControllers['home'] = array('home');
+	$allowedControllers['user'] = array('logout');
+	$allowedControllers['course'] = array('getStudents');
+}
+
 //find a way to add 'docentPage' to the allowedControllers only when logged in.
 // check that the requested controller and action are both allowed
 // if someone tries to access something else (s)he will be redirected to the error action of the pages controller

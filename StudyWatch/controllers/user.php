@@ -2,9 +2,8 @@
 
 function login()
 {
-//Start the Session
-session_start();
-require('db_conection.php');
+global $connection;
+
 //3. If the form is submitted or not.
 //3.1 If the form is submitted
 if (isset($_POST['email']) and isset($_POST['password'])){
@@ -16,8 +15,13 @@ $query = "SELECT * FROM `user` WHERE email='$email' and password='$password'";
 $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 $count = mysqli_num_rows($result);
 //3.1.2 If the posted values are equal to the database values, then session will be created for the user.
-if ($count == 1){
-$_SESSION['email'] = $email;
+if ($count == 1)
+{
+	$foundResult = mysqli_fetch_assoc($result);
+	$_SESSION['email'] = $email;
+	$_SESSION['username'] = $foundResult['name'];
+	$_SESSION['user_type'] = $foundResult['user_type'];
+	
 }else{
 //3.1.3 If the login credentials doesn't match, he will be shown with an error message.
 $fmsg = "Invalid Login Credentials.";
@@ -30,6 +34,15 @@ require_once(APP_PATH.'/views/home.php');
 //3.2 When the user visits the page first time, simple login form will be displayed.
 	require_once(APP_PATH.'/views/login.php');
 }
+}
+
+function logout()
+{
+	echo"<script> alert('logged out!')</script>";
+
+	unset($_COOKIE['PHPSESSID']);
+
+	//require_once(APP_PATH.'/views/login.php');
 }
 
 function forgotPassword()
