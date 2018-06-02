@@ -12,7 +12,7 @@
 	</a>
 	<div>
 		<li class="nav-item d-none d-sm-inline-block">
-		<a name="home" href="#" class="nav-link">Home</a>
+		<a name="home" href="#" class="nav-link">Welkom bij studywatch!</a>
 		</li>
 
 		<!-- mischien dit gebruiken als contact met admin -->
