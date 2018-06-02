@@ -85,7 +85,7 @@
 				  <?php 
 					if(getUserType() == 2)
 					{
-						echo "<th>Aangemeld</th>";
+						echo "<th>Aanmelden</th>";
 					}
 					elseif(getUserType() == 1)
 					{
@@ -114,7 +114,7 @@
 					<?php
 						if(getUserType() == 2)
 						{
-							echo"<td><form method='post'><input type='hidden' name='controller' value='user'/><input type='hidden' name='action' value='aanmelden'/><input type='submit' value='Nee'></input> </form></td>";
+							echo"<td><form method='post'><input type='hidden' name='controller' value='user'/><input type='hidden' name='action' value='aanmelden'/><input type='submit' value='V''></input> </form></td>";
 						}
 						elseif(getUserType() == 3)
 						{
