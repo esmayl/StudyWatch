@@ -1,9 +1,5 @@
 <?php require_once(APP_PATH.'/styles.php'); ?>
 <?php require_once(APP_PATH.'/javascripts.php'); ?>
-<?php
-global $connection;
-$result = mysqli_query($connection,"SELECT * FROM studenten");
-?>
 
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" style="height:auto;min-height=100%;">
@@ -16,6 +12,9 @@ $result = mysqli_query($connection,"SELECT * FROM studenten");
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a name="home" href="#" class="nav-link">Home</a>
+      </li>
+	  <li class="nav-item d-none d-sm-inline-block">
+        <a name="logout" href="#" class="nav-link"><b>Log uit</b></a>
       </li>
 	  
 	  <!-- mischien dit gebruiken als contact met admin -->
@@ -30,7 +29,7 @@ $result = mysqli_query($connection,"SELECT * FROM studenten");
     <a name="home" href="#" class="brand-link">
       
 		<span class="brand-text font-weight-light">
-			<img src="img/temporaryLogo.png" alt="Logo" class="img-circle"
+			<img src="img/temporaryLogo.png" alt="Logo"
            style="opacity: .8;width:100%;height:auto;">
 		</span>
     </a>
@@ -56,25 +55,25 @@ $result = mysqli_query($connection,"SELECT * FROM studenten");
             <a href="#" class="nav-link active">
               <i class="nav-icon fa fa-book"></i>
               <p>
-                Vakken
+                Studenten
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
 			
-				<!-- verander de vakken met PHP per docent/docent/studiebegeleider -->
-				<ul id="vakken" class="nav nav-treeview">
-				  <!-- geeft alleen de studiebegeleider toegang tot studiebegeleiding --> 
-				  <?php if(getUserType() == 3)
-				  {
-					  echo'<li class="nav-item">';
-					  echo'<a name="showstudent" href="#" class="nav-link">';
-					  echo'<i class="fa fa-book-open nav-icon"></i>';
-					  echo'<p>Studiebegeleiding</p>';
-					  echo'</a>';
-					  echo'</li>';
-				  }
-				  ?>
-				</ul>
+			<!-- verander de vakken met PHP per docent/docent/studiebegeleider -->
+			<ul id="vakken" class="nav nav-treeview">
+			  <!-- geeft alleen de studiebegeleider toegang tot studiebegeleiding --> 
+			  <?php if(getUserType() == 3)
+			  {
+				  echo'<li class="nav-item">';
+				  echo'<a name="showstudent" href="#" class="nav-link">';
+				  echo'<i class="fa fa-book-open nav-icon"></i>';
+				  echo'<p>Studiebegeleiding</p>';
+				  echo'</a>';
+				  echo'</li>';
+			  }
+			  ?>
+			</ul>
           </li>
 		  
 		</nav>
@@ -86,12 +85,12 @@ $result = mysqli_query($connection,"SELECT * FROM studenten");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Studenten administratie - Alle </h1>
+            <h1>Studenten aanwezigheid</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a name="home" href="#">Home</a></li>
-              <li class="breadcrumb-item active">Studenten administratie - Alle</li>
+              <li class="breadcrumb-item active">Studenten aanwezigheid</li>
             </ol>
           </div>
         </div>
@@ -103,11 +102,10 @@ $result = mysqli_query($connection,"SELECT * FROM studenten");
               <h3 class="card-title">Lessen</h3>
             </div>
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="table" class="table table-bordered">
                 <thead>
 				<?php
-					echo "<table border='1'>
-					<tr>
+					echo "<tr>
 					<th>Naam</th>
 					<th>Vak</th>
 					<th>Week 1</th>
@@ -121,7 +119,7 @@ $result = mysqli_query($connection,"SELECT * FROM studenten");
                 </thead>
                 <tbody>
 				<?php
-				
+				global $connection;
 				
 				$query = "SELECT students.name as studentName,subject.name as subjectName ,attendency.attendance FROM students inner join attendency ON (students.id=attendency.student_id) inner join subject on (attendency.subject_id=subject.id) inner join class on (attendency.class_id=class.id) WHERE students.id=attendency.student_id";
 
@@ -129,44 +127,76 @@ $result = mysqli_query($connection,"SELECT * FROM studenten");
 				
 				$data = [];
 				
+				//Convert mysql object into array
 				foreach ($result as $key=>$val)
 				{
 					$data[$key]=$val;
 				}
-				
-				
-				
-				$test = "";
-				
-				var_dump($data);
-				
-				$i=0;
-				
-				foreach($data as $row)
+
+				//Returns all attendancy of all students 
+				function GetAtt($array,$course,$student)
 				{
-					if($isNotSame)
+					$length = sizeof($array);
+					$att = array();
+				
+					foreach($array as $p)
 					{
-						echo "</tr>";
+						if($p['subjectName'] == $course && $p['studentName'] == $student)
+						{
+							$att[] = $p['attendance'];
+						}
 					}
-					
-					if($row['subjectName'] != $test)
+					return $att;
+				}
+				
+				$placedCourses = [];
+				$placedStudents = [];
+				
+				//Create elements within a table
+				foreach($data as $d)
+				{
+
+					if(!in_array($d['subjectName'],$placedCourses) || !in_array($d['studentName'],$placedStudents))
 					{
 						echo "<tr>";
-						echo "<td>" . $row['studentName'] . "</td>";
-						echo "<td>" . $row['subjectName'] . "</td>";					
-						echo "<td>" . $row['attendance'] . "</td>";
-						$test = $row['subjectName'];
-					}
-					else
-					{
-						echo "<td>" . $row['attendance'] . "</td>";
-					}
-
+						echo "<td>" . $d['studentName'] . "</td>";
+						echo "<td>" . $d['subjectName'] . "</td>";
+							
+						//Get all attendancies
+						$attendancy = GetAtt($data,$d['subjectName'],$d['studentName']);
+						
+						//Place attendancies next to each other
+						$columnCounter = 0;
+						foreach($attendancy as $t)
+						{
+							if($attendancy == "Aanwezig")
+							{
+								echo "<td>".$t."</td>";
+							}
+							else
+							{
+								echo "<td>".$t."</td>";
+							}
+							$columnCounter++;
+						}
+						
+						//Create empty fields if no attendancy was found
+						for($c = $columnCounter;$c<=5;$c++)
+						{
+							echo "<td> - </td>";
+						}
+						echo "</tr>";
+						
+						//Add subject name to array, to keep track of what has been placed
+						$placedCourses[] = $d['subjectName'];
+						$placedStudents[] = $d['studentName'];
+					}					
 				}
 				?>
                 </tfoot>
               </table>
             </div>
+			
           </div>
         </div>
       </div>
@@ -179,11 +209,10 @@ $result = mysqli_query($connection,"SELECT * FROM studenten");
 <script>
 //functie om de tabel weer te geven
   $(function () {
-    $('#example1').DataTable({
+    $('#table').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": true,
-      "ordering": true,
       "info": true,
     });
   });
@@ -225,6 +254,19 @@ for(var i =0;i<test3.length;i++)
 	{
 		document.body.innerHTML += '<form id="dyn1Form" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="logout">';
 		document.getElementById("dyn1Form").submit();
+	}
+	);
+}
+
+var test4 = document.getElementsByName('showstudent');
+
+//Set function to logout and switch to login page		  
+for(var i =0;i<test4.length;i++)
+{
+	test4[i].addEventListener('click',function()
+	{
+		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="studentlist"><input type="hidden" name="action" value="showStudents">';
+		document.getElementById("dynForm").submit();
 	}
 	);
 }

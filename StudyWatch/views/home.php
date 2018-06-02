@@ -28,7 +28,7 @@
     <a href="#" class="brand-link">
       
 		<span class="brand-text font-weight-light">
-			<img src="img/temporaryLogo.png" alt="Logo" class="img-circle"
+			<img src="img/temporaryLogo.png" alt="Logo"
            style="opacity: .8;width:100%;height:auto;">
 		</span>
     </a>
@@ -55,13 +55,7 @@
 			
             <!-- verander de vakken met PHP per docent/docent/studiebegeleider -->
 			<ul id="vakken" class="nav nav-treeview">
-              <li class="nav-item">
-                <a id="vak1" href="#" class="nav-link active">
-                  <i class="fa fa-book-open nav-icon"></i>
-                  <p>Projectmanagment</p>
-                </a>
-              </li>
-			  
+
 			  <!-- geeft alleen de studiebegeleider toegang tot studiebegeleiding --> 
 			  <?php if(getUserType() == 3)
 			  {
@@ -72,13 +66,16 @@
 				  echo'</a>';
 				  echo'</li>';
 			  }
+			  else
+			  {
+				  echo'<li class="nav-item">';
+				  echo'<a id="vak1" href="#" class="nav-link active">';
+				  echo'<i class="fa fa-book-open nav-icon"></i>';
+				  echo'<p>Projectmanagment</p>';
+				  echo'</a>';
+				  echo'</li>';
+			  }
 			  ?>
-              <li class="nav-item">
-                <a name="course" id="vak3" href="#" class="nav-link">
-                  <i class="fa fa-book-open nav-icon"></i>
-                  <p>Vak 3</p>
-                </a>
-              </li>
             </ul>
           </li>
 		  
@@ -91,7 +88,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Projectmanagement</h1>
+            <h1>Welkom</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -118,7 +115,7 @@
 					{
 						echo "<th>Aangemeld</th>";
 					}
-					elseif(getUserType() == 3 || getUserType() == 1)
+					elseif(getUserType() == 1)
 					{
 						echo "<th>Aanwezigheid</th>";
 					}
@@ -175,53 +172,7 @@
 						}
 					?>
                 </tr>
-				<?php 
-				if(getUserType() == 3)
-				{
-					echo "<tr "."class='clickable'".">";
-				}
-				else
-				{
-					echo "<tr>";
-				}
-				?>
-                  <td>2 - 30/05/2018</td>
-                  <td>2017/2018
-                  </td>
-                  <td>Project plan - Risicomanagement</td>
-					<?php
-						if(getUserType() == 2)
-						{
-							echo"<td><form method='post'><input type='hidden' name='controller' value='user'/><input type='hidden' name='action' value='aanmelden'/><input type='submit' value='Ja'></input> </form></td>";
-						}
-						elseif(getUserType() == 3 )
-						{
-							echo"<td>";
-							echo"<form method='post'>";
-							echo"<input type='hidden' name='controller' value='course'/>";
-							echo"<input type='hidden' name='action' value='getStudents'/>";
-							echo"<input type='hidden' name='courseName' value='Projectmanagement'/>";
-							echo"<input type='hidden' name='weekNumber' value='2'/>";
-							echo"<input type='submit' value='90%'>";
-							echo"</input>";
-							echo"</form>";
-							echo"</td>";
-						}						
-						elseif(getUserType() ==1)
-						{
-							echo"<td>";
-							echo"<form method='post'>";
-							echo"<input type='hidden' name='controller' value='course'/>";
-							echo"<input type='hidden' name='action' value='getStudents'/>";
-							echo"<input type='hidden' name='courseName' value='Projectmanagement'/>";
-							echo"<input type='hidden' name='weekNumber' value='2'/>";
-							echo"<input type='submit' value='90%'>";
-							echo"</input>";
-							echo"</form>";
-							echo"</td>";
-						}
-					?>
-                </tr>
+				
                 </tfoot>
               </table>
             </div>
@@ -268,7 +219,7 @@ for(var i =0;i<test.length;i++)
 {
 	test[i].addEventListener('click',function()
 	{
-		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="setCurrentCourse('+test5[i].innerHTML+');">';
+		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="setCurrentCourse('+test[i].innerHTML+');">';
 		document.getElementById("dynForm").submit();
 	}
 	);
