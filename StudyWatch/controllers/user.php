@@ -35,10 +35,10 @@ function login()
 				$_SESSION['isTeacher'] = True;
 			}
 		}
-		
-
-		if ($count == 1)
-		{			
+		else
+		{		
+			$foundResult = mysqli_fetch_assoc($result);
+			
 			$_SESSION['email'] = $email;
 			
 			$_SESSION['username'] = $foundResult['name'];
@@ -52,14 +52,7 @@ function login()
 				require_once(APP_PATH.'/views/studentlist.php');
 			}
 		}
-		else
-		{
 
-			
-			echo "<script> alert('Gebruikers gegevens niet correct');</script>";
-			
-			require_once(APP_PATH.'/views/login.php');
-		}
 	}
 	else
 	{
@@ -71,14 +64,16 @@ function login()
 			require_once(APP_PATH.'/views/login.php');
 		}
 	}
-	
-	if(getUserType() == 1 || getUserType() == 2)
+	if(isset($_SESSION['username']))
 	{
-		require_once(APP_PATH.'/views/home.php');
-	}
-	else if(getUserType() == 3)
-	{
-		require_once(APP_PATH.'/views/studentlist.php');
+		if(getUserType() == 1 || getUserType() == 2)
+		{
+			require_once(APP_PATH.'/views/home.php');
+		}
+		else if(getUserType() == 3)
+		{
+			require_once(APP_PATH.'/views/studentlist.php');
+		}
 	}
 }
 

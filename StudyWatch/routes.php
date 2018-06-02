@@ -48,7 +48,7 @@ else
 	);	
 }
 
-if(getUserType() != 3 && getUserType() >0&& $action == 'login')
+if(getUserType() < 3 && getUserType() >0&& $action == 'login')
 {
 	$controller = 'home';
 	$action = 'home';
