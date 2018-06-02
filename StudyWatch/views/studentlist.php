@@ -107,13 +107,7 @@
 				<?php
 					echo "<tr>
 					<th>Naam</th>
-					<th>Vak</th>
-					<th>Week 1</th>
-					<th>Week 2</th>
-					<th>Week 3</th>
-					<th>Week 4</th>
-					<th>Week 5</th>
-					<th>Week 6</th>
+					<th>Aanwezigheid</th>
 					</tr>";
 				?>	
                 </thead>
@@ -156,11 +150,10 @@
 				foreach($data as $d)
 				{
 
-					if(!in_array($d['subjectName'],$placedCourses) || !in_array($d['studentName'],$placedStudents))
+					if(!in_array($d['studentName'],$placedStudents))
 					{
 						echo "<tr>";
 						echo "<td>" . $d['studentName'] . "</td>";
-						echo "<td>" . $d['subjectName'] . "</td>";
 							
 						//Get all attendancies
 						$attendancy = GetAtt($data,$d['subjectName'],$d['studentName']);
@@ -169,26 +162,25 @@
 						$columnCounter = 0;
 						foreach($attendancy as $t)
 						{
-							if($attendancy == "Aanwezig")
-							{
-								echo "<td>".$t."</td>";
-							}
-							else
-							{
-								echo "<td>".$t."</td>";
-							}
 							$columnCounter++;
 						}
 						
-						//Create empty fields if no attendancy was found
-						for($c = $columnCounter;$c<=5;$c++)
+						$avg = number_format($columnCounter/(6/100),2);
+						if($avg <33)
 						{
-							echo "<td> - </td>";
+							echo "<td class='alert alert-error'>".$avg."%</td>";
 						}
+						else if($avg < 50)
+						{
+							echo "<td class='alert alert-warning'>".$avg."%</td>";
+						}
+						else 
+						{
+							echo "<td class='alert alert-success'>".$avg."%</td>";
+						}
+							
 						echo "</tr>";
 						
-						//Add subject name to array, to keep track of what has been placed
-						$placedCourses[] = $d['subjectName'];
 						$placedStudents[] = $d['studentName'];
 					}					
 				}
