@@ -10,11 +10,11 @@ function getUserType()
 {
 	if(!isset($_SESSION['is_sb'])&&!isset($_SESSION['isTeacher'])){return 0;}
 	
-	if(isset($_SESSION['is_sb']) && $_SESSION['isTeacher'] == 1)
+	if(isset($_SESSION['is_sb']) && $_SESSION['is_sb'] == 1 && $_SESSION['isTeacher'] == True)
 	{
 		return 3;
 	}
-	else if(isset($_SESSION['isTeacher']) && $_SESSION['isTeacher'] == 1)
+	else if(isset($_SESSION['isTeacher']) && $_SESSION['isTeacher'] == True)
 	{
 		return 1;
 	}
