@@ -1,5 +1,6 @@
 <?php require_once(APP_PATH.'/styles.php'); ?>
 <?php require_once(APP_PATH.'/javascripts.php'); ?>
+<?php require_once(APP_PATH.'/controllers/course.php');?>
 
 <body class="hold-transition sidebar-mini">
 <header class="main-header">
@@ -59,24 +60,8 @@
 			<ul id="vakken" class="nav nav-treeview">
 
 			  <!-- geeft alleen de studiebegeleider toegang tot studiebegeleiding --> 
-			  <?php if(getUserType() == 3)
-			  {
-				  echo'<li class="nav-item">';
-				  echo'<a name="showstudent" href="#" class="nav-link">';
-				  echo'<i class="fa fa-book-open nav-icon"></i>';
-				  echo'<p>Studiebegeleiding</p>';
-				  echo'</a>';
-				  echo'</li>';
-			  }
-			  else
-			  {
-				  echo'<li class="nav-item">';
-				  echo'<a id="vak1" href="#" class="nav-link active">';
-				  echo'<i class="fa fa-book-open nav-icon"></i>';
-				  echo'<p>Projectmanagment</p>';
-				  echo'</a>';
-				  echo'</li>';
-			  }
+				<?php 
+				getCourses();
 			  ?>
             </ul>
           </li>
