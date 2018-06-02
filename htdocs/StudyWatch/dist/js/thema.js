@@ -1,8 +1,4 @@
-/*!
- * AdminLTE v3.0.0-alpha (https://adminlte.io)
- * Copyright 2014-2018 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
- * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
- */
+
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -15,28 +11,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
 };
 
-
-
-
-
-
-
-
-
-
-
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 };
 
-/**
- * --------------------------------------------
- * AdminLTE ControlSidebar.js
- * License MIT
- * --------------------------------------------
- */
 
 var ControlSidebar = function ($) {
   /**
@@ -312,13 +292,6 @@ var Layout = function ($) {
   return Layout;
 }(jQuery);
 
-/**
- * --------------------------------------------
- * AdminLTE PushMenu.js
- * License MIT
- * --------------------------------------------
- */
-
 var PushMenu = function ($) {
   /**
    * Constants
@@ -471,13 +444,6 @@ var PushMenu = function ($) {
 
   return PushMenu;
 }(jQuery);
-
-/**
- * --------------------------------------------
- * AdminLTE Treeview.js
- * License MIT
- * --------------------------------------------
- */
 
 var Treeview = function ($) {
   /**
@@ -642,13 +608,6 @@ var Treeview = function ($) {
 
   return Treeview;
 }(jQuery);
-
-/**
- * --------------------------------------------
- * AdminLTE Widget.js
- * License MIT
- * --------------------------------------------
- */
 
 var Widget = function ($) {
   /**
