@@ -2,27 +2,29 @@
 <?php require_once(APP_PATH.'/javascripts.php'); ?>
 
 <body class="hold-transition sidebar-mini">
+<header class="main-header">
 <div class="wrapper" style="height:auto;min-height=100%;">
 
-  <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+  <nav class="navbar navbar-static-top bg-white navbar-light border-bottom" >
+	<a class="nav-link" data-widget="pushmenu" href="#">
+		<i class="fa fa-bars"></i>
+	</a>
+	<div>
+		<li class="nav-item d-none d-sm-inline-block">
+		<a name="home" href="#" class="nav-link">Home</a>
+		</li>
 
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a name="home" href="#" class="nav-link">Home</a>
-      </li>
-	  <li class="nav-item d-none d-sm-inline-block">
-        <a name="logout" href="#" class="nav-link"><b>Log uit</b></a>
-      </li>
-	  <!-- mischien dit gebruiken als contact met admin -->
-      <!--<li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>-->
-    </ul>
-  
+		<!-- mischien dit gebruiken als contact met admin -->
+		<!--<li class="nav-item d-none d-sm-inline-block">
+		<a href="#" class="nav-link">Contact</a>
+		</li>-->
+	</div>
+	<li class="nav-item d-none d-sm-inline-block">
+	<a name="logout" href="#" class="nav-link bg-info logout" ><b>Log uit</b></a>
+	</li>
 </nav>
+
+</header>
   
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="#" class="brand-link">
