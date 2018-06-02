@@ -43,8 +43,14 @@ function login()
 			
 			$_SESSION['username'] = $foundResult['name'];
 
-			require_once(APP_PATH.'/views/home.php');
-			
+			if(getUserType() == 1 || getUserType() == 2)
+			{
+				require_once(APP_PATH.'/views/home.php');
+			}
+			else
+			{
+				require_once(APP_PATH.'/views/studentlist.php');
+			}
 		}
 		else
 		{
@@ -57,9 +63,13 @@ function login()
 	}
 	else
 	{
-		if(getUserType() >0)
+		if(getUserType() == 1 || getUserType() == 2)
 		{
 			require_once(APP_PATH.'/views/home.php');
+		}
+		else if(getUserType() == 3)
+		{
+			require_once(APP_PATH.'/views/studentlist.php');
 		}
 		else
 		{
