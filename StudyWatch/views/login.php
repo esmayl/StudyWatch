@@ -15,13 +15,11 @@
 			  <input type="hidden" name="controller" value="user">
 			  <input type="hidden" name="action" value="login">
 
-			  <input type="text" placeholder="E-Mail" name="email">
+			  <input type="text" placeholder="E-Mail" name="email" required>
 
-			  <input type="password" placeholder="Wachtwoord" name="password">
+			  <input type="password" placeholder="Wachtwoord" name="password" required>
 
 			  <button type="submit">Login</button>
-
-			  <p>Wachtwoord vergeten? <span><a href="#" name="forgotPassword">Klik hier!</a></span></p>
 
 			</div>
 		</form>

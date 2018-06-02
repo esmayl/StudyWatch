@@ -1,5 +1,6 @@
 <?php require_once(APP_PATH.'/styles.php'); ?>
 <?php require_once(APP_PATH.'/javascripts.php'); ?>
+<?php require_once(APP_PATH.'/controllers/course.php');?>
 
 <body class="hold-transition sidebar-mini">
 <header class="main-header">
@@ -11,7 +12,7 @@
 	</a>
 	<div>
 		<li class="nav-item d-none d-sm-inline-block">
-		<a name="home" href="#" class="nav-link">Home</a>
+		<a name="home" href="#" class="nav-link">Welkom bij studywatch!</a>
 		</li>
 
 		<!-- mischien dit gebruiken als contact met admin -->
@@ -59,24 +60,8 @@
 			<ul id="vakken" class="nav nav-treeview">
 
 			  <!-- geeft alleen de studiebegeleider toegang tot studiebegeleiding --> 
-			  <?php if(getUserType() == 3)
-			  {
-				  echo'<li class="nav-item">';
-				  echo'<a name="showstudent" href="#" class="nav-link">';
-				  echo'<i class="fa fa-book-open nav-icon"></i>';
-				  echo'<p>Studiebegeleiding</p>';
-				  echo'</a>';
-				  echo'</li>';
-			  }
-			  else
-			  {
-				  echo'<li class="nav-item">';
-				  echo'<a id="vak1" href="#" class="nav-link active">';
-				  echo'<i class="fa fa-book-open nav-icon"></i>';
-				  echo'<p>Projectmanagment</p>';
-				  echo'</a>';
-				  echo'</li>';
-			  }
+				<?php 
+				getCourses();
 			  ?>
             </ul>
           </li>
@@ -86,21 +71,6 @@
   </aside>
   
   <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Welkom</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a name="home" href="#">Home</a></li>
-              <li class="breadcrumb-item active">Projectmanagement</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </section>
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Lessen</h3>
@@ -115,7 +85,7 @@
 				  <?php 
 					if(getUserType() == 2)
 					{
-						echo "<th>Aangemeld</th>";
+						echo "<th>Aanmelden</th>";
 					}
 					elseif(getUserType() == 1)
 					{
@@ -144,7 +114,7 @@
 					<?php
 						if(getUserType() == 2)
 						{
-							echo"<td><form method='post'><input type='hidden' name='controller' value='user'/><input type='hidden' name='action' value='aanmelden'/><input type='submit' value='Nee'></input> </form></td>";
+							echo"<td><form method='post'><input type='hidden' name='controller' value='user'/><input type='hidden' name='action' value='aanmelden'/><input type='submit' value='V''></input> </form></td>";
 						}
 						elseif(getUserType() == 3)
 						{
