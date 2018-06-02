@@ -3,7 +3,7 @@
 
 <body class="hold-transition sidebar-mini">
 <header class="main-header">
-<div class="wrapper" style="height:auto;min-height=100%;">
+<div>
 
   <nav class="navbar navbar-static-top bg-white navbar-light border-bottom" >
 	<a class="nav-link" data-widget="pushmenu" href="#">

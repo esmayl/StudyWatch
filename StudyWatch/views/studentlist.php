@@ -3,13 +3,13 @@
 <?php require_once(APP_PATH.'/controllers/studentlist.php'); ?>
 
 <body class="hold-transition sidebar-mini">
-<div class="wrapper" style="height:auto;min-height=100%;">
+<div >
 
-  <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-
-    <ul class="navbar-nav">
-
-
+  <nav class="navbar navbar-static-top bg-white navbar-light border-bottom" >
+	<a class="nav-link" data-widget="pushmenu" href="#">
+		<i class="fa fa-bars"></i>
+	</a>
+	<div>
 	  
 	  <!-- mischien dit gebruiken als contact met admin -->
       <!--<li class="nav-item d-none d-sm-inline-block">
