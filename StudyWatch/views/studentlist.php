@@ -109,45 +109,60 @@ $result = mysqli_query($connection,"SELECT * FROM studenten");
 					echo "<table border='1'>
 					<tr>
 					<th>Naam</th>
-					<th>Implementeren & Testen</th>
-					<th>Digitale Wereld</th>
-					<th>Multimedia & Design</th>
-					<th>Interaction Design</th>
-					<th>Schriftelijke Communicatie</th>
-					<th>Organisatie & Management</th>
+					<th>Vak</th>
+					<th>Week 1</th>
+					<th>Week 2</th>
+					<th>Week 3</th>
+					<th>Week 4</th>
+					<th>Week 5</th>
+					<th>Week 6</th>
 					</tr>";
 				?>	
                 </thead>
                 <tbody>
 				<?php
-				$email = $_SESSION['email'];
-				$password= $_SESSION['password'];
 				
-				$query = "SELECT * FROM `students`";
 				
+				$query = "SELECT students.name as studentName,subject.name as subjectName ,attendency.attendance FROM students inner join attendency ON (students.id=attendency.student_id) inner join subject on (attendency.subject_id=subject.id) inner join class on (attendency.class_id=class.id) WHERE students.id=attendency.student_id";
+
 				$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 				
-				$count = mysqli_num_rows($result);
-
-				if(count($row)>0)
+				$data = [];
+				
+				foreach ($result as $key=>$val)
 				{
-				$count = mysqli_num_rows($result);
-
-				if ($count == 1)
+					$data[$key]=$val;
+				}
+				
+				
+				
+				$test = "";
+				
+				var_dump($data);
+				
+				$i=0;
+				
+				foreach($data as $row)
 				{
-						echo "<tr>";
-						echo "<td>" . $row['Naam'] . "</td>";
-						echo "<td>" . $row['A. Implementeren & Testen'] . "</td>";
-						echo "<td>" . $row['A. Digitale Wereld'] . "</td>";
-						echo "<td>" . $row['A. Multimedia & Design'] . "</td>";
-						echo "<td>" . $row['A. Interaction Design'] . "</td>";
-						echo "<td>" . $row['A. Schriftelijke Communicatie'] . "</td>";
-						echo "<td>" . $row['A. Organisatie & Management'] . "</td>";
+					if($isNotSame)
+					{
 						echo "</tr>";
 					}
-					echo "</table>";
+					
+					if($row['subjectName'] != $test)
+					{
+						echo "<tr>";
+						echo "<td>" . $row['studentName'] . "</td>";
+						echo "<td>" . $row['subjectName'] . "</td>";					
+						echo "<td>" . $row['attendance'] . "</td>";
+						$test = $row['subjectName'];
 					}
-					mysqli_close($connection);
+					else
+					{
+						echo "<td>" . $row['attendance'] . "</td>";
+					}
+
+				}
 				?>
                 </tfoot>
               </table>

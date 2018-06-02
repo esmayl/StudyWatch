@@ -42,9 +42,7 @@ function login()
 			$_SESSION['email'] = $email;
 			
 			$_SESSION['username'] = $foundResult['name'];
-			
-			echo"<script>alert('".$_SESSION['username']."')</script>";
-			
+
 			require_once(APP_PATH.'/views/home.php');
 			
 		}
