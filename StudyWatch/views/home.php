@@ -28,7 +28,7 @@
     <a href="#" class="brand-link">
       
 		<span class="brand-text font-weight-light">
-			<img src="img/temporaryLogo.png" alt="Logo"
+			<img src="img/windesheim.svg" alt="Logo"
            style="opacity: .8;width:100%;height:auto;">
 		</span>
     </a>
