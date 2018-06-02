@@ -47,7 +47,7 @@ function login()
 			{
 				require_once(APP_PATH.'/views/home.php');
 			}
-			else
+			else if(getUserType() == 3)
 			{
 				require_once(APP_PATH.'/views/studentlist.php');
 			}
