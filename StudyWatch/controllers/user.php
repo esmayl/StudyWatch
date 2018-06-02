@@ -63,20 +63,22 @@ function login()
 	}
 	else
 	{
-		if(getUserType() == 1 || getUserType() == 2)
-		{
-			require_once(APP_PATH.'/views/home.php');
-		}
-		else if(getUserType() == 3)
-		{
-			require_once(APP_PATH.'/views/studentlist.php');
-		}
-		else
+		
+		if(getUserType() ==0)
 		{
 			echo "<script> alert('Vul uw gebruikers gegevens in.');</script>";
 			
 			require_once(APP_PATH.'/views/login.php');
 		}
+	}
+	
+	if(getUserType() == 1 || getUserType() == 2)
+	{
+		require_once(APP_PATH.'/views/home.php');
+	}
+	else if(getUserType() == 3)
+	{
+		require_once(APP_PATH.'/views/studentlist.php');
 	}
 }
 

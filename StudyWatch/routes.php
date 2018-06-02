@@ -40,7 +40,7 @@ if (getUserType() > 0)
 }
 else
 {
-	// a list of the controllers we have and their actions we consider "allowed" values
+	
 	$allowedControllers = array(
 		'home' => array ('login','error'),
 		'user' => array ('login','forgotPassword','logout'),
@@ -48,7 +48,7 @@ else
 	);	
 }
 
-if(getUserType() > 0 && $action == 'login')
+if(getUserType() != 3 && getUserType() >0&& $action == 'login')
 {
 	$controller = 'home';
 	$action = 'home';
@@ -56,7 +56,7 @@ if(getUserType() > 0 && $action == 'login')
 
 if(getUserType() == 3 && $action == 'login')
 {
-	$controller ='studentList';
+	$controller ='studentlist';
 	$action='showStudents';
 }
 //find a way to add 'docentPage' to the allowedControllers only when logged in.
