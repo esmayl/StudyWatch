@@ -31,6 +31,7 @@ function login()
 				
 				$_SESSION['username'] = $foundResult['name'];
 				$_SESSION['is_sb'] = $foundResult['is_sb'];
+				$_SESSION['teacherID'] = $foundResult['id'];
 				
 				$_SESSION['isTeacher'] = True;
 			}
@@ -101,4 +102,16 @@ function forgotPassword()
 	require_once(APP_PATH.'/views/forgotPassword.php');
 }
 
+function setCurrentCourse()
+{
+	if(isset($_POST['course']))
+	{
+		$_SESSION['currentC'] = $_POST['course'];
+		require_once(APP_PATH.'/views/home.php');
+	}
+	else
+	{
+		echo'<script>Cant set course name';
+	}
+}
 ?>

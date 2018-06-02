@@ -27,20 +27,23 @@ function getUserType()
 	}
 }
 
-function getCurrentCourse()
+function getTeacherID()
 {
-	return $_SESSION['currentC'];
+	if(isset($_SESSION['teacherID']))
+	{
+		return $_SESSION['teacherID'];
+	}
+	
+	return -1;
 }
 
-function setCurrentCourse($currentCourseName)
+
+function getCurrentCourse()
 {
-	if(!is_null($currentCourseName))
+	if(isset($_SESSION['currentC']))
 	{
-		$_SESSION['currentC'] = $currentCourseName;
-	}
-	else
-	{
-		echo'<script>Cant set course name: '+$currentCourseName;
+		return $_SESSION['currentC'];
 	}
 }
+
 ?>

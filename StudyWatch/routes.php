@@ -26,7 +26,7 @@ if (getUserType() > 0)
 	// a list of controllers that every logged-in person can access
 	$allowedControllers = array(
 	'home' => array ('home','error'),
-	'user' => array ('logout','login'),
+	'user' => array ('logout','login','setCurrentCourse'),
 	);
 	
 	if(getUserType() == 1)
