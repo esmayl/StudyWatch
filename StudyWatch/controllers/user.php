@@ -20,7 +20,7 @@ function login()
 		$result = mysqli_query($connection, $query);
 
 		$count = mysqli_num_rows($result);
-}
+
 		if($count<=0)
 		{
 			$query = "SELECT * FROM `teachers` WHERE email='$email' and password='$password'";
@@ -41,7 +41,7 @@ function login()
 
 				$_SESSION['isTeacher'] = True;
 			}
-		}
+		}}
 		else
 		{
 			$foundResult = mysqli_fetch_assoc($result);
