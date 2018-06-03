@@ -60,13 +60,7 @@ function login()
 	}
 	else
 	{
-		
-		if(getUserType() ==0)
-		{
-			echo "<script> alert('Vul uw gebruikers gegevens in.');</script>";
-			
-			require_once(APP_PATH.'/views/login.php');
-		}
+
 	}
 	if(isset($_SESSION['username']))
 	{
@@ -78,6 +72,12 @@ function login()
 		{
 			require_once(APP_PATH.'/views/studentlist.php');
 		}
+	}
+	else
+	{
+			echo "<script> alert('Vul uw gebruikers gegevens in.');</script>";
+			
+			require_once(APP_PATH.'/views/login.php');
 	}
 }
 

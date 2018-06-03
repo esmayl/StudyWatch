@@ -4,15 +4,13 @@
 
 <body class="hold-transition sidebar-mini">
 <header class="main-header">
-<div>
-
-  <nav class="navbar navbar-static-top bg-white navbar-light border-bottom" >
+<nav class="navbar navbar-static-top bg-white navbar-light border-bottom" >
 	<a class="nav-link" data-widget="pushmenu" href="#">
 		<i class="fa fa-bars"></i>
 	</a>
 	<div>
 		<li class="nav-item d-none d-sm-inline-block">
-		<a name="home" href="#" class="nav-link">Welkom bij studywatch!</a>
+		<a name="home" href="#" class="nav-link">Welkom bij StudyWatch!</a>
 		</li>
 
 		<!-- mischien dit gebruiken als contact met admin -->
@@ -87,10 +85,6 @@
 					{
 						echo "<th>Aanmelden</th>";
 					}
-					elseif(getUserType() == 1)
-					{
-						echo "<th>Aanwezigheid</th>";
-					}
 				  ?>
                 </tr>
                 </thead>
@@ -100,43 +94,9 @@
                 <?php 
 				
 
-
-					global $connection;
-
-					$student = $_SESSION['studentID'];
-					
-					$query = "SELECT class.id as class_id, students.name as studentName,subject.name as subjectName ,attendency.attendance FROM students inner join attendency ON (students.id=attendency.student_id) inner join subject on (attendency.subject_id=subject.id) inner join class on (attendency.class_id=class.id) WHERE attendency.student_id=".$_SESSION['studentID'];
-
-					$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-					
-					
-
-					foreach($result as $p)
+					if(getUserType() == 2)
 					{
-						echo"<script>alert(".$p['subjectName']." ".getCurrentCourse().")</script>";
-						if($p['subjectName'] == getCurrentCourse())
-						{
-							echo"<tr>";
-							echo"<td>".$p['class_id']."</td>";
-							echo"<td>2017/2018</td>";
-							
-							if($p['attendance'] == "Afwezig")
-							{
-								echo"<td><form method='post'><input type='hidden' name='vak' value='".$p['subjectName']."'/>
-								<input type='hidden' name='les' value='".$p['class_id']."'/>
-								<input type='hidden' name='controller' value='user'/>
-								<input type='hidden' name='action' value='aanmelden'/>
-								<input class='alert alert-danger' type='submit' value='X'></input> 
-								</form></td>";
-							}
-							else
-							{
-								echo"<td><form>
-								<input class='alert alert-success' type='submit' value='V'></input> 
-								</form></td>";
-							}
-							echo"</tr>";
-						}
+						getClass();
 					}
 				?>
 				
@@ -199,19 +159,6 @@ for(var i =0;i<test3.length;i++)
 	test3[i].addEventListener('click',function()
 	{
 		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="logout">';
-		document.getElementById("dynForm").submit();
-	}
-	);
-}
-
-var test4 = document.getElementsByName('showstudent');
-
-//Set function to logout and switch to login page		  
-for(var i =0;i<test4.length;i++)
-{
-	test4[i].addEventListener('click',function()
-	{
-		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="studentlist"><input type="hidden" name="action" value="showStudents">';
 		document.getElementById("dynForm").submit();
 	}
 	);

@@ -57,9 +57,7 @@ function getStudents()
 		{
 			$data[$key]=$val;
 		}
-
 		
-
 		$placedStudents = [];
 		
 		//Create elements within a table

@@ -4,41 +4,41 @@
 
 <body class="hold-transition sidebar-mini">
 <header class="main-header">
-<div>
 	<nav class="navbar navbar-static-top bg-white navbar-light border-bottom" >
 		<a class="nav-link" data-widget="pushmenu" href="#">
 			<i class="fa fa-bars"></i>
 		</a>
+		<div>
+		<li class="nav-item d-none d-sm-inline-block">
+		<a name="home" href="#" class="nav-link">Welkom bij StudyWatch!</a>
+		</li>
+		</div>
+			<li class="nav-item d-none d-sm-inline-block">
+	<a name="logout" href="#" class="nav-link bg-info logout" ><b>Log uit</b></a>
+	</li>
 	</nav>
 </header>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-	<span class="brand-text font-weight-light">
-		<img src="img/windesheim.svg" alt="Logo"
-	   style="opacity: .8;width:100%;height:auto;">
-	</span>
-
+    <a href="#" class="brand-link">
+      
+		<span class="brand-text font-weight-light">
+			<img src="img/windesheim.svg" alt="Logo"
+           style="opacity: .8;width:100%;height:auto;">
+		</span>
+    </a>
 
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
+        <div class="info">
+          <a name="home" href="#" class="d-block">Welkom <b><?php echo getUsername(); ?></b></a>
+        </div>
       </div>
-	  	<li class="d-none d-sm-inline-block">
-			<a class="text-white">
-				<b>
-				<?php 
-					echo getUsername(); 
-				?>
-				</b>
-			</a>
-		</li>
-		<li class="d-none d-sm-inline-block">
-			<a name="logout" href="#" class="nav-link bg-info logout">
-			<b>Log uit</b>
-			</a>
-		</li>
-      </div>
+    </div>
+  </aside>
 
+	  
     </div>
   </aside>
   
