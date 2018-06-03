@@ -9,25 +9,37 @@ function login()
 
 		$email = $_POST['email'];
 		$password = $_POST['password'];
+		
 		$hashPassword = $connection->query("SELECT password FROM `students` WHERE email='$email'");
 		$resultaat = mysqli_fetch_assoc($hashPassword);
-			//	echo $resultaat;
-			//	printf($resultaat['password']);
-		 //var_dump (password_verify ($password, $resultaat['password']));
-		if(password_verify ($password, $resultaat['password'])){
-		$query = "SELECT * FROM `students` WHERE email='$email'";
-
-		$result = mysqli_query($connection, $query);
-
-		$count = mysqli_num_rows($result);
-}
-		if($count<=0)
+		
+		$count=0;
+		
+		if(password_verify ($password, $resultaat['password']))
 		{
-			$query = "SELECT * FROM `teachers` WHERE email='$email' and password='$password'";
+			$query = "SELECT * FROM `students` WHERE email='$email'";
 
-			$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+			$result = mysqli_query($connection, $query);
 
 			$count = mysqli_num_rows($result);
+		}
+		if($count<=0)
+		{
+			$email = $_POST['email'];
+			$password = $_POST['password'];
+			
+			$hashPassword = $connection->query("SELECT password FROM `teachers` WHERE email='$email'");
+			$resultaat = mysqli_fetch_assoc($hashPassword);
+
+			if(password_verify ($password, $resultaat['password']))
+			{
+				$query = "SELECT * FROM `teachers` WHERE email='$email'";
+
+				$result = mysqli_query($connection, $query);
+
+				$count = mysqli_num_rows($result);
+			}
+
 			if ($count == 1)
 			{
 				$foundResult = mysqli_fetch_assoc($result);
@@ -63,16 +75,7 @@ function login()
 		}
 
 	}
-	else
-	{
 
-		if(getUserType() ==0)
-		{
-			echo "<script> alert('Vul uw gebruikers gegevens in.');</script>";
-
-			require_once(APP_PATH.'/views/login.php');
-		}
-	}
 	if(isset($_SESSION['username']))
 	{
 		if(getUserType() == 1 || getUserType() == 2)
@@ -83,6 +86,14 @@ function login()
 		{
 			require_once(APP_PATH.'/views/studentlist.php');
 		}
+	}
+	else
+	{
+
+		echo "<script> alert('Vul uw gebruikers gegevens in.');</script>";
+
+		require_once(APP_PATH.'/views/login.php');
+
 	}
 }
 

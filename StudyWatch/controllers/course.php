@@ -63,9 +63,9 @@ function getClass()
 			}
 			else
 			{
-				echo"<td><form>
+				echo"<td>
 				<input class='alert alert-success' type='submit' value='V'></input> 
-				</form></td>";
+				</td>";
 			}
 			echo"</tr>";
 		}

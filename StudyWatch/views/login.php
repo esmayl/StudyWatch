@@ -27,21 +27,6 @@
 
 </div>
 
-<script>
-
-var test = document.getElementsByName('forgotPassword');
-
-for(var i =0;i<test.length;i++)
-{
-	test[i].addEventListener('click',function()
-	{
-		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="forgotPassword">';
-		document.getElementById("dynForm").submit();
-	}
-	);
-}
-</script>
-
 <?php
 include(APP_PATH."/views/footer.php");
 ?>
