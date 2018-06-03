@@ -12,11 +12,6 @@
 		<li class="nav-item d-none d-sm-inline-block">
 		<a name="home" href="#" class="nav-link">Welkom bij StudyWatch!</a>
 		</li>
-
-		<!-- mischien dit gebruiken als contact met admin -->
-		<!--<li class="nav-item d-none d-sm-inline-block">
-		<a href="#" class="nav-link">Contact</a>
-		</li>-->
 	</div>
 	<li class="nav-item d-none d-sm-inline-block">
 	<a name="logout" href="#" class="nav-link bg-info logout" ><b>Log uit</b></a>
@@ -54,10 +49,8 @@
               </p>
             </a>
 			
-            <!-- verander de vakken met PHP per docent/docent/studiebegeleider -->
 			<ul id="vakken" class="nav nav-treeview">
 
-			  <!-- geeft alleen de studiebegeleider toegang tot studiebegeleiding --> 
 				<?php 
 				getCourses();
 			  ?>
@@ -90,16 +83,12 @@
                 </thead>
                 <tbody>
 				
-				<!-- maak tr's aan per les voor het geselecteerde vak -->
                 <?php 
-				
-
 					if(getUserType() == 2)
 					{
 						getClass();
 					}
 				?>
-				
                 </tfoot>
               </table>
             </div>
@@ -113,7 +102,7 @@
 </div>
 
 <script>
-//functie om de tabel weer te geven
+//function to display the table
   $(function () {
     $('#table').DataTable({
       "paging": true,
