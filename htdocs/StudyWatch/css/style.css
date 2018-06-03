@@ -88,4 +88,8 @@ html,body{
 {
 	background:rgba(0, 130, 150,0.3)!important;
 }
-  
+
+.logout
+{
+	border-radius:3px;
+}
