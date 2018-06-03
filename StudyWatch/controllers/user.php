@@ -9,44 +9,44 @@ function login()
 
 		$email = $_POST['email'];
 		$password = $_POST['password'];
-		
+
 		$query = "SELECT * FROM `students` WHERE email='$email' and password='$password'";
-		
+
 		$result = mysqli_query($connection, $query);
-		
+
 		$count = mysqli_num_rows($result);
-		
+
 		if($count<=0)
 		{
 			$query = "SELECT * FROM `teachers` WHERE email='$email' and password='$password'";
-			
+
 			$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-			
+
 			$count = mysqli_num_rows($result);
 			if ($count == 1)
 			{
 				$foundResult = mysqli_fetch_assoc($result);
-				
+
 				$_SESSION['email'] = $email;
-				
+
 				$_SESSION['username'] = $foundResult['name'];
 				$_SESSION['is_sb'] = $foundResult['is_sb'];
 				$_SESSION['teacherID'] = $foundResult['id'];
-				
-				
+
+
 				$_SESSION['isTeacher'] = True;
 			}
 		}
 		else
-		{		
+		{
 			$foundResult = mysqli_fetch_assoc($result);
-			
+
 			$_SESSION['email'] = $email;
-			
+
 			$_SESSION['username'] = $foundResult['name'];
 
 			$_SESSION['studentID'] = $foundResult['id'];
-			
+
 			if(getUserType() == 1 || getUserType() == 2)
 			{
 				require_once(APP_PATH.'/views/home.php');
@@ -60,11 +60,11 @@ function login()
 	}
 	else
 	{
-		
+
 		if(getUserType() ==0)
 		{
 			echo "<script> alert('Vul uw gebruikers gegevens in.');</script>";
-			
+
 			require_once(APP_PATH.'/views/login.php');
 		}
 	}
@@ -91,11 +91,11 @@ function logout()
 	else
 	{
 		session_destroy();
-		
+
 		unset($_COOKIE['PHPSESSID']);
 
 		require_once(APP_PATH.'/views/login.php');
-		
+
 		echo"<script> alert('U bent nu uitgelogged.')</script>";
 	}
 }
@@ -108,6 +108,14 @@ function forgotPassword()
 
 function aanmelden()
 {
-	
-}
+ $vak = $_POST['vak'];
+ $les = $_POST['les'];
+ $studentid = $_SESSION['studentID'];
+
+ global $connection;
+ $query = "UPDATE attendency SET attendance = 'Aanwezig' WHERE student_id='$studentid' AND class_id='$les' AND subject_id='$vak'";
+ $result = mysqli_query($connection, $query);
+ echo"<script> alert('Je bent aanwezig gezet voor de les')</script>";
+ require_once(APP_PATH.'/views/home.php');
+ }
 ?>
