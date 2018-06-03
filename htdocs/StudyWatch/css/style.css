@@ -80,15 +80,6 @@ html,body{
   cursor:pointer;
   color:#666;
 }
-.even:hover
-{
-	background:rgba(0, 130, 150,0.3);
-}
-.odd:hover
-{
-	background:rgba(0, 130, 150,0.3)!important;
-}
-
 .logout
 {
 	border-radius:3px;
