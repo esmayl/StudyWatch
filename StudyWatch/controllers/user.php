@@ -108,6 +108,19 @@ function forgotPassword()
 
 function aanmelden()
 {
+	$vak = $_POST['vak'];
+	$les = $_POST['les'];
+	$studentid = $_SESSION['studentID'];
+
+	global $connection;
 	
+	$query = "UPDATE attendency SET attendance = 'Aanwezig' WHERE student_id='$studentid' AND class_id='$les' AND subject_id='$vak'";
+	$result = mysqli_query($connection, $query);
+
+	if($result)
+	{
+		echo"<script> alert('Je bent aanwezig gezet voor de les')</script>";
+	}
+	require_once(APP_PATH.'/views/home.php');
 }
 ?>

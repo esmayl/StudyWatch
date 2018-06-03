@@ -40,13 +40,12 @@ function getClass()
 
 	$student = $_SESSION['studentID'];
 	
-	$query = "SELECT class.id as class_id, students.name as studentName,subject.name as subjectName ,attendency.attendance FROM students inner join attendency ON (students.id=attendency.student_id) inner join subject on (attendency.subject_id=subject.id) inner join class on (attendency.class_id=class.id) WHERE attendency.student_id=".$_SESSION['studentID'];
+	$query = "SELECT class.id as class_id, students.name as studentName,subject.name as subjectName ,subject.id as subjectID ,attendency.attendance FROM students inner join attendency ON (students.id=attendency.student_id) inner join subject on (attendency.subject_id=subject.id) inner join class on (attendency.class_id=class.id) WHERE attendency.student_id=".$_SESSION['studentID'];
 
 	$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 
 	foreach($result as $p)
 	{
-		echo"<script>alert(".$p['subjectName']." ".getCurrentCourse().")</script>";
 		if($p['subjectName'] == getCurrentCourse())
 		{
 			echo"<tr>";
@@ -55,7 +54,7 @@ function getClass()
 			
 			if($p['attendance'] == "Afwezig")
 			{
-				echo"<td><form method='post'><input type='hidden' name='vak' value='".$p['subjectName']."'/>
+				echo"<td><form method='post'><input type='hidden' name='vak' value='".$p['subjectID']."'/>
 				<input type='hidden' name='les' value='".$p['class_id']."'/>
 				<input type='hidden' name='controller' value='user'/>
 				<input type='hidden' name='action' value='aanmelden'/>
