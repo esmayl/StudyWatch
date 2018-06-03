@@ -73,15 +73,15 @@
   <div class="content-wrapper">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Lessen</h3>
+              <h3 class="card-title"><?php echo "<b>".getCurrentCourse()."</b>";?></h3>
             </div>
             <div class="card-body">
+			
               <table id="table" class="table table-bordered table-striped">
                 <thead>
 				<tr>
                   <th>Week</th>
                   <th>Cohort</th>
-                  <th>Onderwerp</th>
 				  <?php 
 					if(getUserType() == 2)
 					{
@@ -98,52 +98,47 @@
 				
 				<!-- maak tr's aan per les voor het geselecteerde vak -->
                 <?php 
-				if(getUserType() == 3)
-				{
-					echo "<tr "."class='clickable'".">";
-				}
-				else
-				{
-					echo "<tr>";
-				}
+				
+
+
+					global $connection;
+
+					$student = $_SESSION['studentID'];
+					
+					$query = "SELECT class.id as class_id, students.name as studentName,subject.name as subjectName ,attendency.attendance FROM students inner join attendency ON (students.id=attendency.student_id) inner join subject on (attendency.subject_id=subject.id) inner join class on (attendency.class_id=class.id) WHERE attendency.student_id=".$_SESSION['studentID'];
+
+					$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+					
+					
+
+					foreach($result as $p)
+					{
+						echo"<script>alert(".$p['subjectName']." ".getCurrentCourse().")</script>";
+						if($p['subjectName'] == getCurrentCourse())
+						{
+							echo"<tr>";
+							echo"<td>".$p['class_id']."</td>";
+							echo"<td>2017/2018</td>";
+							
+							if($p['attendance'] == "Afwezig")
+							{
+								echo"<td><form method='post'><input type='hidden' name='vak' value='".$p['subjectName']."'/>
+								<input type='hidden' name='les' value='".$p['class_id']."'/>
+								<input type='hidden' name='controller' value='user'/>
+								<input type='hidden' name='action' value='aanmelden'/>
+								<input class='alert alert-danger' type='submit' value='X'></input> 
+								</form></td>";
+							}
+							else
+							{
+								echo"<td><form>
+								<input class='alert alert-success' type='submit' value='V'></input> 
+								</form></td>";
+							}
+							echo"</tr>";
+						}
+					}
 				?>
-                  <td>1 - 23/05/2018</td>
-                  <td>2017/2018
-                  </td>
-                  <td>Project plan - Inleiding</td>
-					<?php
-						if(getUserType() == 2)
-						{
-							echo"<td><form method='post'><input type='hidden' name='controller' value='user'/><input type='hidden' name='action' value='aanmelden'/><input type='submit' value='V''></input> </form></td>";
-						}
-						elseif(getUserType() == 3)
-						{
-							echo"<td>";
-							echo"<form method='post'>";
-							echo"<input type='hidden' name='controller' value='course'/>";
-							echo"<input type='hidden' name='action' value='getStudents'/>";
-							echo"<input type='hidden' name='courseName' value='Projectmanagement'/>";
-							echo"<input type='hidden' name='weekNumber' value='1'/>";
-							echo"<input type='submit' value='51%'>";
-							echo"</input>";
-							echo"</form>";
-							echo"</td>";
-						}
-						elseif(getUserType() ==1)
-						{
-							echo"<td>";
-							echo"<form method='post'>";
-							echo"<input type='hidden' name='controller' value='course'/>";
-							echo"<input type='hidden' name='action' value='getStudents'/>";
-							echo"<input type='hidden' name='courseName' value='Projectmanagement'/>";
-							echo"<input type='hidden' name='weekNumber' value='1'/>";
-							echo"<input type='submit' value='66%'>";
-							echo"</input>";
-							echo"</form>";
-							echo"</td>";
-						}
-					?>
-                </tr>
 				
                 </tfoot>
               </table>
@@ -169,29 +164,14 @@
     });
   });
 
-// Vakken knop 
-var btnContainer = document.getElementById("vakken");
-
-// Alle vakken knoppen
-var btns = btnContainer.getElementsByClassName("nav-link");
-
-// Loop over alle vakken en zet de geselecteerde naar active
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-    var current = btnContainer.getElementsByClassName("nav-link active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
-}
-
-var test = document.getElementsByClassName('clickable');
+var test = document.getElementsByName('clickable');
 
 //Set function to switch the page to the course page when clicked on 1 of the courses
 for(var i =0;i<test.length;i++)
 {
-	test[i].addEventListener('click',function()
+	test[i].addEventListener('click',function(event)
 	{
-		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="setCurrentCourse('+test[i].innerHTML+');">';
+		document.body.innerHTML += '<form id="dynForm" method="post"><input type="hidden" name="controller" value="user"><input type="hidden" name="action" value="setCurrentCourse"><input type="hidden" name="course" value="'+event.currentTarget.innerHTML+'">';
 		document.getElementById("dynForm").submit();
 	}
 	);

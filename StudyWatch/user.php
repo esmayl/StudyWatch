@@ -37,6 +37,18 @@ function getTeacherID()
 	return -1;
 }
 
+function setCurrentCourse()
+{
+	if(isset($_POST['course']))
+	{
+		$_SESSION['currentC'] = $_POST['course'];
+		require_once(APP_PATH.'/views/home.php');
+	}
+	else
+	{
+		echo'<script>Cant set course name';
+	}
+}
 
 function getCurrentCourse()
 {
@@ -45,5 +57,7 @@ function getCurrentCourse()
 		return $_SESSION['currentC'];
 	}
 }
+
+
 
 ?>

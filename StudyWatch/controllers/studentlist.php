@@ -9,7 +9,7 @@ function getStudents()
 {
 	global $connection;
 				
-		$query = "SELECT students.name as studentName,subject.name as subjectName ,attendency.attendance FROM students inner join attendency ON (students.id=attendency.student_id) inner join subject on (attendency.subject_id=subject.id) inner join class on (attendency.class_id=class.id) WHERE students.id=attendency.student_id";
+		$query = "SELECT students.id, students.name as studentName,subject.name as subjectName ,attendency.attendance FROM students inner join attendency ON (students.id=attendency.student_id) inner join subject on (attendency.subject_id=subject.id) inner join class on (attendency.class_id=class.id) WHERE students.id=attendency.student_id";
 
 		$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 		
