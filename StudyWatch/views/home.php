@@ -164,6 +164,7 @@
     });
   });
 
+
 var test = document.getElementsByName('clickable');
 
 //Set function to switch the page to the course page when clicked on 1 of the courses

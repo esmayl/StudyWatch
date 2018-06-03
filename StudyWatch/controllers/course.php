@@ -15,11 +15,22 @@ function getCourses()
 
 	foreach($co as $course)
 	{
-		echo '<li class="nav-item">';
-			echo'<a href="#" class="nav-link" name="clickable">';
-			echo $course['name'];
-			echo'</a>';
-		echo'</li>';
+		if($course['name'] == getCurrentCourse())
+		{
+			echo '<li class="nav-item">';
+				echo'<a href="#" class="nav-link active" name="clickable">';
+				echo $course['name'];
+				echo'</a>';
+			echo'</li>';
+		}
+		else
+		{
+			echo '<li class="nav-item">';
+				echo'<a href="#" class="nav-link" name="clickable">';
+				echo $course['name'];
+				echo'</a>';
+			echo'</li>';
+		}
 	}
 }
 
