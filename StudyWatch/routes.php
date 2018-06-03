@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-function call($controller, $action) 
+function call($controller, $action)
 {
     // require the file that matches the controller name
     $includeFile = sprintf('%s/controllers/%s.php', APP_PATH, $controller);
@@ -15,7 +15,7 @@ $action = "login";
 $allowedControllers = [];
 
 // check if the controller and action are set
-if (isset($_POST['controller']) && isset($_POST['action'])) 
+if (isset($_POST['controller']) && isset($_POST['action']))
 {
     $controller = $_POST['controller'];
     $action = $_POST['action'];
@@ -25,10 +25,10 @@ if (getUserType() > 0)
 {
 	// a list of controllers that every logged-in person can access
 	$allowedControllers = array(
-	'home' => array ('home','error'),
-	'user' => array ('logout','login','setCurrentCourse'),
+	'home' => array ('home','error',),
+	'user' => array ('logout','login','setCurrentCourse', 'aanmelden'),
 	);
-	
+
 	if(getUserType() == 1)
 	{
 		$allowedControllers['course'] = array ('getStudents');
@@ -40,12 +40,12 @@ if (getUserType() > 0)
 }
 else
 {
-	
+
 	$allowedControllers = array(
 		'home' => array ('login','error'),
-		'user' => array ('login','forgotPassword','logout'),
-		
-	);	
+		'user' => array ('login','forgotPassword','logout')
+
+	);
 }
 
 if(getUserType() < 3 && getUserType() >0&& $action == 'login')
