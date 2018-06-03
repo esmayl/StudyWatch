@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2018 at 04:07 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Gegenereerd op: 03 jun 2018 om 12:48
+-- Serverversie: 10.1.26-MariaDB
+-- PHP-versie: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attendency`
+-- Tabelstructuur voor tabel `attendency`
 --
 
 CREATE TABLE `attendency` (
@@ -37,30 +37,38 @@ CREATE TABLE `attendency` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `attendency`
+-- Gegevens worden geëxporteerd voor tabel `attendency`
 --
 
 INSERT INTO `attendency` (`ID`, `student_id`, `subject_id`, `class_id`, `attendance`) VALUES
-(1, 1, 2, 1, 'Aanwezig'),
-(2, 1, 2, 2, 'Afwezig'),
-(3, 1, 2, 3, 'Aanwezig'),
-(4, 1, 1, 1, 'Afwezig'),
-(5, 1, 1, 2, 'Aanwezig'),
-(6, 1, 2, 3, 'Aanwezig'),
-(7, 1, 2, 4, 'Aanwezig'),
-(9, 1, 4, 1, 'Aanwezig'),
-(10, 2, 2, 1, 'Aanwezig'),
-(12, 3, 1, 1, 'Aanwezig'),
-(15, 2, 3, 1, 'Aanwezig'),
-(16, 3, 4, 1, 'Aanwezig'),
-(17, 2, 2, 2, 'Afwezig'),
-(18, 2, 6, 1, 'Afwezig'),
-(19, 3, 5, 1, 'Aanwezig');
+(1, 1, 1, 1, 'Afwezig'),
+(2, 1, 1, 2, 'Afwezig'),
+(3, 1, 1, 4, 'Afwezig'),
+(7, 1, 2, 1, 'Afwezig'),
+(8, 1, 2, 2, 'Afwezig'),
+(9, 1, 2, 3, 'Afwezig'),
+(10, 1, 2, 4, 'Afwezig'),
+(11, 1, 3, 1, 'Afwezig'),
+(12, 1, 3, 2, 'Afwezig'),
+(13, 1, 3, 3, 'Afwezig'),
+(14, 1, 3, 4, 'Afwezig'),
+(15, 1, 4, 1, 'Afwezig'),
+(16, 1, 4, 2, 'Afwezig'),
+(17, 1, 4, 3, 'Afwezig'),
+(18, 1, 4, 4, 'Afwezig'),
+(19, 1, 5, 1, 'Afwezig'),
+(20, 1, 5, 2, 'Afwezig'),
+(21, 1, 5, 3, 'Afwezig'),
+(22, 1, 5, 4, 'Afwezig'),
+(23, 1, 6, 1, 'Afwezig'),
+(24, 1, 6, 2, 'Afwezig'),
+(25, 1, 6, 3, 'Afwezig'),
+(26, 1, 6, 4, 'Afwezig');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `class`
+-- Tabelstructuur voor tabel `class`
 --
 
 CREATE TABLE `class` (
@@ -69,7 +77,7 @@ CREATE TABLE `class` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `class`
+-- Gegevens worden geëxporteerd voor tabel `class`
 --
 
 INSERT INTO `class` (`id`, `subject_id`) VALUES
@@ -84,7 +92,7 @@ INSERT INTO `class` (`id`, `subject_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `students`
+-- Tabelstructuur voor tabel `students`
 --
 
 CREATE TABLE `students` (
@@ -95,7 +103,7 @@ CREATE TABLE `students` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `students`
+-- Gegevens worden geëxporteerd voor tabel `students`
 --
 
 INSERT INTO `students` (`id`, `name`, `email`, `password`) VALUES
@@ -106,7 +114,7 @@ INSERT INTO `students` (`id`, `name`, `email`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subject`
+-- Tabelstructuur voor tabel `subject`
 --
 
 CREATE TABLE `subject` (
@@ -116,7 +124,7 @@ CREATE TABLE `subject` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `subject`
+-- Gegevens worden geëxporteerd voor tabel `subject`
 --
 
 INSERT INTO `subject` (`id`, `name`, `teacher_id`) VALUES
@@ -130,7 +138,7 @@ INSERT INTO `subject` (`id`, `name`, `teacher_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teachers`
+-- Tabelstructuur voor tabel `teachers`
 --
 
 CREATE TABLE `teachers` (
@@ -142,7 +150,7 @@ CREATE TABLE `teachers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `teachers`
+-- Gegevens worden geëxporteerd voor tabel `teachers`
 --
 
 INSERT INTO `teachers` (`id`, `name`, `email`, `password`, `is_sb`) VALUES
@@ -151,11 +159,11 @@ INSERT INTO `teachers` (`id`, `name`, `email`, `password`, `is_sb`) VALUES
 (3, 'Tjerk Van Westing', 't.van.westing@windesheimflevoland.nl', 'koekje123', 1);
 
 --
--- Indexes for dumped tables
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `attendency`
+-- Indexen voor tabel `attendency`
 --
 ALTER TABLE `attendency`
   ADD PRIMARY KEY (`ID`),
@@ -164,71 +172,71 @@ ALTER TABLE `attendency`
   ADD KEY `subject_id` (`subject_id`);
 
 --
--- Indexes for table `class`
+-- Indexen voor tabel `class`
 --
 ALTER TABLE `class`
   ADD PRIMARY KEY (`id`),
   ADD KEY `subject_id` (`subject_id`);
 
 --
--- Indexes for table `students`
+-- Indexen voor tabel `students`
 --
 ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `subject`
+-- Indexen voor tabel `subject`
 --
 ALTER TABLE `subject`
   ADD PRIMARY KEY (`id`),
   ADD KEY `teacher_id` (`teacher_id`);
 
 --
--- Indexes for table `teachers`
+-- Indexen voor tabel `teachers`
 --
 ALTER TABLE `teachers`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `attendency`
+-- AUTO_INCREMENT voor een tabel `attendency`
 --
 ALTER TABLE `attendency`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `class`
+-- AUTO_INCREMENT voor een tabel `class`
 --
 ALTER TABLE `class`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `students`
+-- AUTO_INCREMENT voor een tabel `students`
 --
 ALTER TABLE `students`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `subject`
+-- AUTO_INCREMENT voor een tabel `subject`
 --
 ALTER TABLE `subject`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `teachers`
+-- AUTO_INCREMENT voor een tabel `teachers`
 --
 ALTER TABLE `teachers`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Constraints for dumped tables
+-- Beperkingen voor geëxporteerde tabellen
 --
 
 --
--- Constraints for table `attendency`
+-- Beperkingen voor tabel `attendency`
 --
 ALTER TABLE `attendency`
   ADD CONSTRAINT `attendency_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`),
@@ -236,13 +244,13 @@ ALTER TABLE `attendency`
   ADD CONSTRAINT `attendency_ibfk_3` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`);
 
 --
--- Constraints for table `class`
+-- Beperkingen voor tabel `class`
 --
 ALTER TABLE `class`
   ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`);
 
 --
--- Constraints for table `subject`
+-- Beperkingen voor tabel `subject`
 --
 ALTER TABLE `subject`
   ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`id`);
