@@ -16,10 +16,8 @@ function getCourses()
 	foreach($co as $course)
 	{
 		echo '<li class="nav-item">';
-			echo '<a id="vak1" href="#" class="nav-link ">';
-					  
-			echo'<i class="fa fa-book-open nav-icon"></i>';
-			echo'<p name="clickable">' . $course['name'] . '</p>';
+			echo'<a href="#" class="nav-link" name="clickable">';
+			echo $course['name'];
 			echo'</a>';
 		echo'</li>';
 	}
